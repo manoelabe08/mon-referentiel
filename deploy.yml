@@ -14,7 +14,7 @@
       git commit -m "Déploiement du site web"
       git remote add origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
       git push -f origin main:gh-pages
-    env:
+    environment:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_ACTOR: ${{ github.actor }}
       GITHUB_REPOSITORY: ${{ github.repository }}
