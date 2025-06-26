@@ -1,0 +1,13 @@
+- name: Déployer le site web sur GitHub Pages
+  hosts: localhost
+  tasks:
+  - name: Copier les fichiers du site web
+    copy:
+      content: "{{ lookup('file', 'index.html') }}"
+      dest: "index.html"
+  - name: Déployer le site web sur GitHub Pages
+    github_pages:
+      token: "{{ github_token }}"
+      repo: manoelabe08/mon-referentiel
+      branch: main
+      directory: .
