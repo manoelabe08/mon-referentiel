@@ -6,15 +6,14 @@
       content: "{{ lookup('file', 'index.html') }}"
       dest: "index.html"
   - name: Déployer le site web sur GitHub Pages
-    run:
-      cmd: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git init
-        git add .
-        git commit -m "Déploiement du site web"
-        git remote add origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-        git push -f origin main:gh-pages
+    shell: |
+      git config --global user.name "github-actions[bot]"
+      git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      git init
+      git add .
+      git commit -m "Déploiement du site web"
+      git remote add origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+      git push -f origin main:gh-pages
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_ACTOR: ${{ github.actor }}
