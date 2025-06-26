@@ -18,5 +18,8 @@ jobs:
       - name: Déployer le site web
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          ansible-playbook deploy.yml
+          ansible-playbook deploy.yml -e "GITHUB_TOKEN=$GITHUB_TOKEN GITHUB_ACTOR=$GITHUB_ACTOR GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
+
